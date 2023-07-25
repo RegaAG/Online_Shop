@@ -11,7 +11,7 @@ class homePageController extends Controller
 {
     public function homePage(){
         return view('homePage.index',[
-            'datas' => Products::paginate(12),
+            'datas' => Products::orderBy('updated_at', 'desc')->paginate(12),
             'categories' => Category::all()
         ]);
     }

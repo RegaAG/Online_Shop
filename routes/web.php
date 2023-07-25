@@ -47,3 +47,5 @@ Route::post('/dashboard/edit/product/{id}', [DashboardController::class, 'editPr
 Route::delete('/dashboard/delete/product/{id}', [DashboardController::class, 'deleteProduct'])->name('deleteProduct')->middleware('auth');
 
 Route::get('/dashboard/userPage', [DashboardController::class, 'userPage'])->name('userPage')->middleware('auth');
+
+Route::delete('/dashboard/delete/user/{id}', [DashboardController::class, 'deleteUser'])->name('deleteUser')->middleware('auth');

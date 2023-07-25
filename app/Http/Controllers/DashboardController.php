@@ -17,7 +17,7 @@ class DashboardController extends Controller
 
     public function product(){
         return view('dashboard.product.product',[
-            'datas' => Products::paginate(20),
+            'datas' => Products::orderBy('name','asc')->paginate(20),
             'category' => Category::all()
         ]);
     }
@@ -115,10 +115,17 @@ class DashboardController extends Controller
         $data->delete();
         return redirect('/dashboard/product')->with('info', 'Data delete successfully');
     }
-
+    
     public function userPage(){
         return view('dashboard.user.userPage',[
-            'users' => User::paginate(20)
+            'users' => User::orderBy('name','asc')->paginate(20)
         ]);
+    }
+
+    public function deleteUser($id){
+
+        User::where('id', $id)->delete();
+
+        return redirect('/dashboard/userPage')->with('info', 'User delete successfully');
     }
 }

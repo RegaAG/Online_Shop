@@ -23,6 +23,7 @@
                         <th scope="col">Number Phone</th>
                         <th scope="col">Username</th>
                         <th scope="col">Created_at</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,13 @@
                             <td>{{ $user->numberPhone }}</td>
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->created_at }}</td>
+                            <td>
+                                <form action="{{ route('deleteUser', ['id' => $user->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">DELETE</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tr>
