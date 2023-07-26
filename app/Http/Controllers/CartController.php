@@ -35,7 +35,7 @@ class CartController extends Controller
         $data = [
             'user_id' => $request->get('user_id'),
             'products_id' => $request->get('products_id'),
-            'status' => 1
+            'status' => 'Dalam Proses'
         ];
 
         Cart::create($data);

@@ -15,4 +15,11 @@ class homePageController extends Controller
             'categories' => Category::all()
         ]);
     }
+
+    public function category($id){
+        return view('homePage.category',[
+            'datas' => Products::where('category_id', $id)->get(),
+            'categories' => Category::all()
+        ]);
+    }
 }

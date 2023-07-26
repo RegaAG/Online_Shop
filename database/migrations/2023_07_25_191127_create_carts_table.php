@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('products_id');
-            $table->integer('status');
+            $table->string('status');
             $table->timestamps();
         });
     }
-
     
     public function down(): void
     {

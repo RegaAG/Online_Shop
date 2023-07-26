@@ -18,7 +18,8 @@
                             <hr class="dropdown-divider" />
                         </li>
                         @foreach ($categories as $cat)
-                            <li><a class="dropdown-item" href="#!">{{ $cat->name }}</a></li>
+                            <li><a class="dropdown-item"
+                                    href="{{ route('category', ['id' => $cat->id]) }}">{{ $cat->name }}</a></li>
                         @endforeach
                     </ul>
                 </li>

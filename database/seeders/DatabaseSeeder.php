@@ -19,35 +19,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        User::factory(9)->create();
-        Products::factory(25)->create();
-
         User::insert([
             'name' => 'Admin',
             'address' => 'aaaaa',
             'numberPhone' => '0813',
             'username' => 'admin',
             'password' => Hash::make('root'),
-        ]);
-
-        Category::insert([
-            'name' => 'Laptop'
-        ]);
-
-        Category::insert([
-            'name' => 'Handphone'
-        ]);
-
-        Category::insert([
-            'name' => 'Tablet'
-        ]);
-
-        Category::insert([
-            'name' => 'Komputer'
-        ]);
-
-        Category::insert([
-            'name' => 'Printer'
         ]);
     }
 }

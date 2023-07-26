@@ -33,7 +33,7 @@ class DashboardController extends Controller
             'name' => ['required'],
             'price' => ['required'],
             'description' => ['required'],
-            'category' => ['required'],
+            // 'category' => ['required'],
             'image' => ['required','mimes:jpeg,jpg,png,gif']
         ]);
 
@@ -130,7 +130,9 @@ class DashboardController extends Controller
     }
 
     public function addCategoryPage(){
-        return view('dashboard.product.addCategory');
+        return view('dashboard.product.addCategory',[
+            'datas' => Category::all()
+        ]);
     }
 
     public function addCategory(Request $request){
@@ -145,6 +147,21 @@ class DashboardController extends Controller
 
         Category::create($data);
 
-        return redirect('/dashboard/product')->with('info', 'Category Create Successfully');
+        return redirect('/dashboard/add/categoryPage')->with('info', 'Category Create Successfully');
+    }
+
+    public function editCategory(Request $request, $id){
+        
+        $request->validate([
+            'nameCategory' => ['required']
+        ]);
+
+        $data = [
+            'name' => $request->get('nameCategory')
+        ];
+
+        Category::where('id', $id)->update($data);
+
+        return redirect('/dashboard/add/categoryPage')->with('info', 'Category Edit Successfully');
     }
 }

@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 // HomePage Controller
 Route::get('/', [homePageController::class, 'homePage'])->name('homePage');
 
+Route::get('/category/{id}', [homePageController::class, 'category'])->name('category');
+
 // Cart Controller
 Route::resource('cart', CartController::class);
 
@@ -46,13 +48,15 @@ Route::get('/dashboard/add/productPage', [DashboardController::class, 'addProduc
 
 Route::post('/dashboard/add/product', [DashboardController::class, 'addProduct'])->name('addProduct')->middleware('auth');
 
+Route::post('/dashboard/edit/product/{id}', [DashboardController::class, 'editProduct'])->name('editProduct')->middleware('auth');
+
+Route::delete('/dashboard/delete/product/{id}', [DashboardController::class, 'deleteProduct'])->name('deleteProduct')->middleware('auth');
+
 Route::get('/dashboard/add/categoryPage', [DashboardController::class, 'addCategoryPage'])->name('add.category.page')->middleware('auth');
 
 Route::post('/dashboard/add/category', [DashboardController::class, 'addCategory'])->name('addCategory')->middleware('auth');
 
-Route::post('/dashboard/edit/product/{id}', [DashboardController::class, 'editProduct'])->name('editProduct')->middleware('auth');
-
-Route::delete('/dashboard/delete/product/{id}', [DashboardController::class, 'deleteProduct'])->name('deleteProduct')->middleware('auth');
+Route::post('/dashboard/edit/category/{id}', [DashboardController::class, 'editCategory'])->name('editCategory')->middleware('auth');
 
 Route::get('/dashboard/userPage', [DashboardController::class, 'userPage'])->name('userPage')->middleware('auth');
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('price');
             $table->text('description');
             $table->string('image');
-            $table->integer('category_id');
+            $table->integer('category_id')->nullable();
             $table->timestamps();
         });
     }
