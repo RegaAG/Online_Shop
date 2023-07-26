@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Products extends Model
+class Cart extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function category(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function cart(): HasMany
+    public function product(): BelongsTo
     {
-        return $this->hasMany(Cart::class, 'product_id');
+        return $this->belongsTo(Products::class, 'products_id');
     }
 }

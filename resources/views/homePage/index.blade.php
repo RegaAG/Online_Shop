@@ -3,9 +3,11 @@
 @section('main')
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
+
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">TecnoNusantara Shop</h1>
-                <p class="lead fw-normal text-white-50 mb-0">TeknoNusantara Shop: Menghadirkan Teknologi Nusantara untuk Masa
+                <p class="lead fw-normal text-white-50 mb-0">TeknoNusantara Shop: Menghadirkan Teknologi Nusantara untuk
+                    Masa
                     Depanmu!</p>
             </div>
         </div>
@@ -13,6 +15,12 @@
     <!-- Section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
+            @if (session()->has('info'))
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    {{ session('info') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 @foreach ($datas as $data)
                     <div class="col mb-5">
@@ -33,7 +41,7 @@
                                 <div class="text-center">
                                     <button type="button" class="btn btn-outline-dark mt-auto" data-bs-toggle="modal"
                                         data-bs-target="#productDetails{{ $data->id }}">
-                                        Buy Now
+                                        View More
                                     </button>
                                 </div>
                             </div>
@@ -67,7 +75,17 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Buy Now</button>
+                        @if (Auth::check())
+                            <form action="cart" method="POST">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="products_id" value="{{ $data->id }}">
+                                <button type="submit" class="btn btn-primary">Add To Cart</button>
+                            </form>
+                        @else
+                            <a href="{{ route('loginPage') }}" class="btn btn-success" class="btn btn-succsess">Login For
+                                Buy</a>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -28,8 +28,11 @@
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4">
                 @if (Auth::check())
-                    <li class="nav-item">
+                    <li class="nav-item mx-3">
                         <a class="btn btn-danger" href="{{ route('logout') }}"> Logout </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-success" href="/cart"> <i class="bi bi-cart3"></i> </a>
                     </li>
                 @else
                     <li class="nav-item">

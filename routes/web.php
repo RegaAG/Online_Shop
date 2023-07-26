@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\homePageController;
 use App\Http\Controllers\RegisterController;
@@ -21,6 +22,11 @@ use Illuminate\Support\Facades\Route;
 
 // HomePage Controller
 Route::get('/', [homePageController::class, 'homePage'])->name('homePage');
+
+// Route::get('/cart', [homePageController::class, 'cart'])->name('cart')->middleware('auth');
+
+// Cart Controller
+Route::resource('cart', CartController::class);
 
 // Auth Controller
 Route::get('/loginPage', [AuthController::class, 'index'])->name('loginPage')->middleware('guest');
