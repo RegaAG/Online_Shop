@@ -19,6 +19,7 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('dashboard.product') }}">All Product</a>
                         <a class="nav-link" href="{{ route('add.product.page') }}">Add Products</a>
+                        <a class="nav-link" href="{{ route('add.category.page') }}">Add Category</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"

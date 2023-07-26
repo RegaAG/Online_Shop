@@ -23,7 +23,7 @@ class ProductsFactory extends Factory
             'price' => mt_rand(5000000, 20000000),
             'description' => fake()->paragraph(5),
             'image' => fake()->imageUrl(450, 300, 'laptop', true),
-            'category_id' => mt_rand(1, 5),
+            'category_id' => mt_rand(1, 6),
             'created_at' => Carbon::now(),
         ];
     }

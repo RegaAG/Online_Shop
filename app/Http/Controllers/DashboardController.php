@@ -128,4 +128,23 @@ class DashboardController extends Controller
 
         return redirect('/dashboard/userPage')->with('info', 'User delete successfully');
     }
+
+    public function addCategoryPage(){
+        return view('dashboard.product.addCategory');
+    }
+
+    public function addCategory(Request $request){
+        $request->validate([
+            'name' => ['required','max:255']
+        ]);
+
+        $data = [
+            'name' => $request->get('name'),
+            'created_at' => Carbon::now()
+        ];
+
+        Category::create($data);
+
+        return redirect('/dashboard/product')->with('info', 'Category Create Successfully');
+    }
 }

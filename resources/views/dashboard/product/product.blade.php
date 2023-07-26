@@ -40,11 +40,6 @@
                                     data-bs-target="#editProduct{{ $data->id }}"> Edit </button>
                                 <button href="" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#deleteProduct{{ $data->id }}"> Delete </button>
-                                {{-- <form action="{{ route('deleteProduct', ['id' => $data->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"> Delete</button>
-                                </form> --}}
                             </td>
                         </tr>
                     @endforeach

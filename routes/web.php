@@ -23,8 +23,6 @@ use Illuminate\Support\Facades\Route;
 // HomePage Controller
 Route::get('/', [homePageController::class, 'homePage'])->name('homePage');
 
-// Route::get('/cart', [homePageController::class, 'cart'])->name('cart')->middleware('auth');
-
 // Cart Controller
 Route::resource('cart', CartController::class);
 
@@ -47,6 +45,10 @@ Route::get('/dashboard/product', [DashboardController::class, 'product'])->name(
 Route::get('/dashboard/add/productPage', [DashboardController::class, 'addProductPage'])->name('add.product.page')->middleware('auth');
 
 Route::post('/dashboard/add/product', [DashboardController::class, 'addProduct'])->name('addProduct')->middleware('auth');
+
+Route::get('/dashboard/add/categoryPage', [DashboardController::class, 'addCategoryPage'])->name('add.category.page')->middleware('auth');
+
+Route::post('/dashboard/add/category', [DashboardController::class, 'addCategory'])->name('addCategory')->middleware('auth');
 
 Route::post('/dashboard/edit/product/{id}', [DashboardController::class, 'editProduct'])->name('editProduct')->middleware('auth');
 
