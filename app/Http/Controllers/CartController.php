@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -13,29 +15,25 @@ class CartController extends Controller
      */
     public function index()
     {
+        $user = Auth()->id();
         return view('homePage.cart',[
-            'datas' => Cart::all(),
+            'datas' => Cart::where('user_id', $user)->where('status', '=', 'Cart')->get(),
             'categories' => Category::all()
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         $data = [
             'user_id' => $request->get('user_id'),
             'products_id' => $request->get('products_id'),
-            'status' => 'Dalam Proses'
+            'status' => 'Cart'
         ];
 
         Cart::create($data);
@@ -46,32 +44,46 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Cart $cart)
+    public function show($id)
     {
-        //
+        return view('homePage.order',[
+            'datas'  => Order::where('user_id', $id)->get(),
+            'categories' => Category::all()
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Cart $cart)
+    public function edit(Cart $cart, $id)
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Cart $cart)
+    
+    public function update($id)
     {
-        //
+        $products = Cart::where('user_id', $id)->get();
+
+        foreach ($products as $product) {
+            $data = [
+                'user_id' => $product->user_id,
+                'products_id' => $product->product->id,
+                'status' => 'menunggu konfirmasi penjual'
+            ];
+            Order::create($data);
+
+            Cart::where('id', $product->id)->delete();
+
+        }
+        return redirect('/')->with('info', 'Order Successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Cart $cart)
+    
+    public function destroy($id)
     {
-        //
+        Cart::where('id', $id)->delete();
+
+        return redirect('/cart');
     }
 }

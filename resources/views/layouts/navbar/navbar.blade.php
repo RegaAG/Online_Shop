@@ -30,6 +30,9 @@
             <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4">
                 @if (Auth::check())
                     <li class="nav-item mx-3">
+                        <a class="btn btn-info" href="/cart/{{ Auth()->user()->id }}"> My Order </a>
+                    </li>
+                    <li class="nav-item mx-3">
                         <a class="btn btn-danger" href="{{ route('logout') }}"> Logout </a>
                     </li>
                     <li class="nav-item">

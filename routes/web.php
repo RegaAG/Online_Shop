@@ -4,19 +4,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\homePageController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 
 
@@ -27,6 +18,7 @@ Route::get('/category/{id}', [homePageController::class, 'category'])->name('cat
 
 // Cart Controller
 Route::resource('cart', CartController::class);
+
 
 // Auth Controller
 Route::get('/loginPage', [AuthController::class, 'index'])->name('loginPage')->middleware('guest');
@@ -61,3 +53,6 @@ Route::post('/dashboard/edit/category/{id}', [DashboardController::class, 'editC
 Route::get('/dashboard/userPage', [DashboardController::class, 'userPage'])->name('userPage')->middleware('auth');
 
 Route::delete('/dashboard/delete/user/{id}', [DashboardController::class, 'deleteUser'])->name('deleteUser')->middleware('auth');
+
+// Order Controller
+Route::resource('order', OrderController::class);
